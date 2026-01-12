@@ -91,7 +91,7 @@ def process_cpg(
     n_forward = (~final_snp_df["flipped"]).sum()
     n_flipped = (final_snp_df["flipped"]).sum()
     print(
-        f"Matched {len(final_snp_df)} variants ({n_forward} forward, {n_flipped} flipped)"
+        f"  Matched {len(final_snp_df)} variants ({n_forward} forward, {n_flipped} flipped)"
     )
 
     # Flip signs and save csv
@@ -116,14 +116,14 @@ def process_cpg(
     ht_snp.unpersist()
     ht_matched.unpersist()
 
-    print(f"Data prep completed in {time.time() - start:.2f}s")
+    print(f"  Data prep completed in {time.time() - start:.2f}s")
     return True
 
 
 def run_susie(cpg_id: str, data_dir: str, out_dir: str, cleanup: bool = True):
     """Run SuSiE fine-mapping for a single CpG site."""
     start = time.time()
-    print(f"Running SuSiE for {cpg_id}...")
+    print(f"  Running SuSiE for {cpg_id}...")
 
     csv_file = f"{data_dir}/{cpg_id}.csv"
     ld_file = f"{data_dir}/{cpg_id}_LD.txt"
@@ -149,17 +149,17 @@ def run_susie(cpg_id: str, data_dir: str, out_dir: str, cleanup: bool = True):
             text=True,
             check=True,
         )
-        print(f"SuSiE completed in {time.time() - start:.2f}s")
+        print(f"  SuSiE completed in {time.time() - start:.2f}s")
 
         # Clean up intermediate files if requested
         if cleanup:
             os.remove(csv_file)
             os.remove(ld_file)
-            print("Cleaned up intermediate files")
+            print("  Cleaned up intermediate files")
 
         return True
     except subprocess.CalledProcessError as e:
-        print(f"SuSiE ERROR: {e.stderr}")
+        print(f"  SuSiE ERROR: {e.stderr}")
         return False
 
 
