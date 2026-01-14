@@ -6,7 +6,7 @@ data = pd.read_csv("../data/assoc_meta_all.csv.gz")
 
 print(f"There are {len(data)} total SNP:CpG pairs")
 
-# Identify and filter out SNPs with no significant associations
+# Identify and filter out CpGs with no significant associations
 
 data["significant"] = data.groupby("cpg")["pval"].transform(lambda x: (x < 5e-8).any())
 
