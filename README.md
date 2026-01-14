@@ -18,9 +18,9 @@ For each CpG:
  - Run `susie_rss` from `susieR` using the Z-scores and LD matrix, setting L to 8.
  - Collect PIPs and mean posterior effect sizes.
 
-## Reference panel
+## LD reference panel
 
-Currently using the UKBB European reference panel, accessed using hail.
+Currently using the UKBB European LD reference panel, accessed using hail.
 
 This may not be the best reference panel as GoDMC has many data sources, with the majority of data overall being European descent split between UK and Netherlands.
 
